@@ -6,8 +6,6 @@ bp = Blueprint("repos", __name__, url_prefix="/user")
 
 endpoint = "https://api.github.com"
 
-conn, cur = connect()
-
 
 def get_repo_by_page(access_token, page):
     url = f'{endpoint}/user/repos'
@@ -41,6 +39,7 @@ def repos():
                 repos += res
 
         if (status == 200):
+            conn, cur = connect()
             for repo in repos:
                 cur.execute("""
                     INSERT INTO repos (id, name, stars, status, oid)

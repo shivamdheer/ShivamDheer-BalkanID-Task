@@ -6,8 +6,6 @@ bp = Blueprint("orgs", __name__, url_prefix="/user")
 
 endpoint = "https://api.github.com"
 
-conn, cur = connect()
-
 
 def get_org_by_page(access_token, page):
     url = f'{endpoint}/user/orgs'
@@ -40,6 +38,7 @@ def orgs():
                 orgs += res
 
         if (status == 200):
+            conn, cur = connect()
             for org in orgs:
                 cur.execute("""
                     INSERT INTO owners (id, username, name, email, type)

@@ -6,8 +6,6 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 
 endpoint = "https://api.github.com"
 
-conn, cur = connect()
-
 
 @ bp.route("/")
 def user():
@@ -20,6 +18,7 @@ def user():
         data = res.json()
 
         if (res.status_code == 200):
+            conn, cur = connect()
             cur.execute("""
                 INSERT INTO owners (id, username, name, email, type)
                 VALUES (%s, %s, %s, %s, %s)
