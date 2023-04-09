@@ -13,9 +13,14 @@ def user():
         url = f'{endpoint}/user'
         headers = {"Authorization": 'token ' + access_token}
 
-        res = requests.get(url=url, headers=headers).json()
-        data = {"id": res["id"], "username": res["login"],
-                "name": res["name"], "email": res["email"]}
-        return data
+        res = requests.get(url=url, headers=headers)
+        data = res.json()
+
+        if (res.status_code == 200):
+            return {"id": data["id"], "username": data["login"],
+                    "name": data["name"], "email": data["email"], "type": data["type"]}, res.status_code
+        else:
+            render_template("callback.html", title=res.status_code,
+                            desc=res.reason)
     else:
-        return render_template("callback.html", title="Access denied", desc="You are unauthorized.")
+        return redirect("/")
