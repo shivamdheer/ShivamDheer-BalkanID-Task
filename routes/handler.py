@@ -26,6 +26,7 @@ def get_access_token(request_token):
 
 @bp.route("/access")
 def access():
+    global access_token
     request_token = request.args.get('code')
     token = get_access_token(request_token)
 
@@ -40,7 +41,7 @@ def access():
 def user():
     if access_token is not None:
         url = 'https://api.github.com/user'
-        headers = {"Authorization": 'token' + access_token}
+        headers = {"Authorization": 'token ' + access_token}
 
         res = requests.get(url=url, headers=headers)
         return res.json()

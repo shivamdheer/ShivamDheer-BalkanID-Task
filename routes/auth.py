@@ -7,7 +7,8 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 @bp.route("/")
 def index():
     CLIENT_ID = os.environ.get("CLIENT_ID")
-    return redirect(f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}')
+    scopes = ["read:user", "user:email", "repo"]
+    return redirect(f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}&scope={"%20".join(scopes)}')
 
 
 @bp.route("/callback")
