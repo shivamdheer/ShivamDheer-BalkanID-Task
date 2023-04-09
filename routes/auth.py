@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template
+from flask import Blueprint, request, redirect, render_template, make_response
 import os
 import requests
 
@@ -35,11 +35,12 @@ def callback():
         return render_template("callback.html", title=request.args.get('error'), desc=request.args.get('error_description'))
 
     request_token = request.args.get('code')
-    token = get_access_token(request_token)
+    access_token = get_access_token(request_token)
 
-    if token == -1:
+    if access_token == -1:
         return render_template("callback.html", title="Access denied", desc="Unable to fetch access token.")
     else:
-        access_token = token
-    return redirect("/user")
+        res = make_response(redirect("/user"))
+        res.set_cookie('access_token', access_token)
+    return res
 # render_template("callback.html", title="Success", desc="User authenticated successfully.")

@@ -1,14 +1,14 @@
 from flask import Blueprint, request, redirect, render_template
 import requests
 
-bp = Blueprint("handler", __name__, url_prefix="/repo")
+bp = Blueprint("repo", __name__, url_prefix="/repo")
 
-access_token = None
 endpoint = "https://api.github.com"
 
 
 @ bp.route("/")
 def repo():
+    access_token = request.cookies.get('access_token')
     if access_token is not None:
         url = f'{endpoint}/user/repos'
         headers = {"Authorization": 'token ' + access_token}
