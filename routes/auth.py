@@ -4,6 +4,8 @@ import requests
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
+endpoint = "https://api.github.com"
+
 
 @bp.route("/")
 def auth():
@@ -40,7 +42,20 @@ def callback():
     if access_token == -1:
         return render_template("error.html", title=status, desc=reason)
     else:
-        res = make_response(redirect("/user"))
+        res = make_response(redirect("/"))
         res.set_cookie('access_token', access_token)
+
+        url = f'{endpoint}/user'
+        headers = {"Authorization": 'token ' + access_token}
+        res.set_cookie('user', requests.get(
+            url=url, headers=headers).json()["login"])
     return res
 # render_template("error.html", title="Success", desc="User authenticated successfully.")
+
+
+@bp.route("/logout")
+def logout():
+    res = make_response(redirect("/"))
+    res.set_cookie('access_token', '', expires=0)
+    res.set_cookie('user', '', expires=0)
+    return res

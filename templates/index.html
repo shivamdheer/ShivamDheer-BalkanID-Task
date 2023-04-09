@@ -78,22 +78,23 @@
         {% if authorized %}
         <h1>Hello, {{ user }}</h1>
         <a class="button button--social-login button--github" href="/user"
-            ><i class="icon fa fa-github"></i>Fetch User</a
+            >&nbsp;&nbsp;&nbsp;Fetch User</a
         >
         <a class="button button--social-login button--github" href="/user/repos"
-            ><i class="icon fa fa-github"></i>Fetch Repositories</a
+            >&nbsp;&nbsp;&nbsp;Fetch Repositories</a
         >
         <a class="button button--social-login button--github" href="/user/orgs"
-            ><i class="icon fa fa-github"></i>Fetch Organizations
+            >&nbsp;&nbsp;&nbsp;Fetch Organizations
         </a>
         <a
             class="button button--social-login button--github"
             href="/auth/logout"
-            ><i class="icon fa fa-github"></i>Logout
+            >&nbsp;&nbsp;&nbsp;Logout
         </a>
         {% else %}
         <a class="button button--social-login button--github" href="/auth"
             ><i class="icon fa fa-github"></i>Login With Github</a
         >
+        {% endif %}
     </body>
 </html>
