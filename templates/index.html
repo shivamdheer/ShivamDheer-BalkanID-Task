@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign in with GitHub</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <style>
+            body {
+                text-align: center;
+                padding: 24px 24px 96px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1,
+            h2 {
+                margin-bottom: 48px;
+                font-weight: normal;
+            }
+            .button {
+                width: auto;
+                display: inline-block;
+                padding: 0 18px 0 6px;
+                border: 0 none;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: all 250ms linear;
+            }
+            .button:hover {
+                text-decoration: none;
+            }
+            .button--social-login {
+                margin-bottom: 12px;
+                margin-right: 12px;
+                color: white;
+                height: 50px;
+                line-height: 46px;
+                position: relative;
+                text-align: left;
+            }
+            .button--social-login .icon {
+                margin-right: 12px;
+                font-size: 24px;
+                line-height: 24px;
+                width: 42px;
+                height: 24px;
+                text-align: center;
+                display: inline-block;
+                position: relative;
+                top: 4px;
+            }
+            .button--social-login .icon:before {
+                display: inline-block;
+                width: 40px;
+            }
+            .button--social-login .icon:after {
+                content: "";
+            }
+            .button--github {
+                background-color: #333;
+                border: 1px solid #1a1a1a;
+            }
+            .button--github .icon {
+                border-right: 1px solid #1a1a1a;
+            }
+            .button--github .icon:after {
+                border-right: 1px solid #4d4d4d;
+            }
+            .button--github:hover {
+                background-color: #262626;
+            }
+        </style>
+    </head>
+    <body>
+        <a class="button button--social-login button--github" href="/auth"
+            ><i class="icon fa fa-github"></i>Login With Github</a
+        >
+    </body>
+</html>
