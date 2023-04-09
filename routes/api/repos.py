@@ -1,4 +1,5 @@
 from flask import Blueprint, request, redirect, render_template
+from .init_db import cur, conn
 import requests
 
 bp = Blueprint("repos", __name__, url_prefix="/user")
@@ -38,6 +39,17 @@ def repos():
                 repos += res
 
         if (status == 200):
+            for repo in repos:
+                cur.execute("""
+                    INSERT INTO repos (id, name, stars, status, oid)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON CONFLICT (id) DO UPDATE
+                    SET name = EXCLUDED.name,
+                    stars = EXCLUDED.stars,
+                    status = EXCLUDED.status,
+                    oid = EXCLUDED.oid;
+                """, (repo["id"], repo["name"], repo["stars"], repo["status"], repo["oid"]))
+            conn.commit()
             return {"count": len(repos), "data": repos}, status
         else:
             return render_template("error.html", title=status, desc=reason)
