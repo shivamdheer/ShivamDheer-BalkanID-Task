@@ -28,7 +28,8 @@ def repos():
         page = 1
 
         res, status, reason = get_repo_by_page(access_token, page)
-        repos.append(res)
+        if len(res) > 0:
+            repos.append(res)
 
         while len(res) > 0:
             page += 1
@@ -39,6 +40,6 @@ def repos():
         if (status == 200):
             return repos, status
         else:
-            return render_template("callback.html", title=status, desc=reason)
+            return render_template("error.html", title=status, desc=reason)
     else:
         return redirect("/")

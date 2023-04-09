@@ -28,7 +28,8 @@ def orgs():
         page = 1
 
         res, status, reason = get_org_by_page(access_token, page)
-        orgs.append(res)
+        if len(res) > 0:
+            orgs.append(res)
 
         while len(res) > 0:
             page += 1
@@ -39,6 +40,6 @@ def orgs():
         if (status == 200):
             return orgs, status
         else:
-            return render_template("callback.html", title=status, desc=reason)
+            return render_template("error.html", title=status, desc=reason)
     else:
         return redirect("/")

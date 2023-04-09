@@ -27,6 +27,7 @@
                 border-radius: 5px;
                 text-decoration: none;
                 transition: all 250ms linear;
+                margin-bottom: 12px;
             }
             .button:hover {
                 text-decoration: none;
@@ -74,6 +75,23 @@
         </style>
     </head>
     <body>
+        {% if authorized %}
+        <h1>Hello, {{ user }}</h1>
+        <a class="button button--social-login button--github" href="/user"
+            ><i class="icon fa fa-github"></i>Fetch User</a
+        >
+        <a class="button button--social-login button--github" href="/user/repos"
+            ><i class="icon fa fa-github"></i>Fetch Repositories</a
+        >
+        <a class="button button--social-login button--github" href="/user/orgs"
+            ><i class="icon fa fa-github"></i>Fetch Organizations
+        </a>
+        <a
+            class="button button--social-login button--github"
+            href="/auth/logout"
+            ><i class="icon fa fa-github"></i>Logout
+        </a>
+        {% else %}
         <a class="button button--social-login button--github" href="/auth"
             ><i class="icon fa fa-github"></i>Login With Github</a
         >

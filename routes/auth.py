@@ -32,15 +32,15 @@ def get_access_token(request_token):
 @bp.route("/callback")
 def callback():
     if request.args.get('error') is not None:
-        return render_template("callback.html", title=request.args.get('error'), desc=request.args.get('error_description'))
+        return render_template("error.html", title=request.args.get('error'), desc=request.args.get('error_description'))
 
     request_token = request.args.get('code')
     access_token, status, reason = get_access_token(request_token)
 
     if access_token == -1:
-        return render_template("callback.html", title=status, desc=reason)
+        return render_template("error.html", title=status, desc=reason)
     else:
         res = make_response(redirect("/user"))
         res.set_cookie('access_token', access_token)
     return res
-# render_template("callback.html", title="Success", desc="User authenticated successfully.")
+# render_template("error.html", title="Success", desc="User authenticated successfully.")

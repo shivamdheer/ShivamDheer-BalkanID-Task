@@ -20,7 +20,7 @@ def user():
             return {"id": data["id"], "username": data["login"],
                     "name": data["name"], "email": data["email"], "type": data["type"]}, res.status_code
         else:
-            render_template("callback.html", title=res.status_code,
+            render_template("error.html", title=res.status_code,
                             desc=res.reason)
     else:
         return redirect("/")
