@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 import requests
 import os
 
@@ -31,10 +31,12 @@ def access():
     token = get_access_token(request_token)
 
     if token == -1:
-        return "Unable to fetch access token"
+        return render_template("callback.html",
+                               {"title": "Access denied", "desc": "Unable to fetch access token."})
     else:
         access_token = token
-    return "Success"
+    return render_template("callback.html",
+                           {"title": "Success", "desc": "User authenticated successfully."})
 
 
 @bp.route("/user")

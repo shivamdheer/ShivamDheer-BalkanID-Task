@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect
+from flask import Blueprint, request, redirect, render_template
 import os
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
@@ -13,5 +13,8 @@ def index():
 
 @bp.route("/callback")
 def callback():
+    if request.args.get('error') is not None:
+        return render_template("callback.html",
+                               {"title": request.args.get('error'), "desc": request.args.get('error_description')})
     request_token = request.args.get('code')
     return redirect(f'/handler/access?code={request_token}')
