@@ -17,4 +17,4 @@ def callback():
         return render_template("callback.html",
                                {"title": request.args.get('error'), "desc": request.args.get('error_description')})
     request_token = request.args.get('code')
-    return redirect(f'/handler/access?code={request_token}')
+    return redirect(f'/access?code={request_token}')

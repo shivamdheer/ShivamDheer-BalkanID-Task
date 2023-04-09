@@ -1,10 +1,11 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, redirect, render_template
 import requests
 import os
 
-bp = Blueprint("handler", __name__, url_prefix="/handler")
+bp = Blueprint("handler", __name__, url_prefix="/")
 
 access_token = None
+endpoint = "https://api.github.com"
 
 
 def get_access_token(request_token):
@@ -35,17 +36,35 @@ def access():
                                {"title": "Access denied", "desc": "Unable to fetch access token."})
     else:
         access_token = token
-    return render_template("callback.html",
-                           {"title": "Success", "desc": "User authenticated successfully."})
+    return redirect("/user")
+# render_template("callback.html", {"title": "Success", "desc": "User authenticated successfully."})
 
 
-@bp.route("/user")
+@ bp.route("/user")
 def user():
     if access_token is not None:
-        url = 'https://api.github.com/user'
+        url = f'{endpoint}/user'
         headers = {"Authorization": 'token ' + access_token}
 
-        res = requests.get(url=url, headers=headers)
-        return res.json()
+        res = requests.get(url=url, headers=headers).json()
+        data = {"id": res["login"], "name": res["name"]}
+        if res["email"] is not None:
+            data["email"] = res["email"]
+        return data
     else:
-        return "Unauthorized"
+        return render_template("callback.html",
+                               {"title": "Access denied", "desc": "You are unauthorized."})
+
+
+@ bp.route("/repo")
+def repo():
+    if access_token is not None:
+        url = f'{endpoint}/user/repos'
+        headers = {"Authorization": 'token ' + access_token}
+        params = {"page": 1, "per_page": 100}
+
+        res = requests.get(url=url, headers=headers, params=params).json()
+        return res
+    else:
+        return render_template("callback.html",
+                               {"title": "Access denied", "desc": "You are unauthorized."})
