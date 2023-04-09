@@ -33,7 +33,7 @@ def orgs():
 
         while len(res) > 0:
             page += 1
-            res = get_org_by_page(access_token, page)
+            res = get_org_by_page(access_token, page)[0]
             if len(res) > 0:
                 orgs.append(res)
 

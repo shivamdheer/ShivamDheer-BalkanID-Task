@@ -33,7 +33,7 @@ def repos():
 
         while len(res) > 0:
             page += 1
-            res = get_repo_by_page(access_token, page)
+            res = get_repo_by_page(access_token, page)[0]
             if len(res) > 0:
                 repos.append(res)
 
