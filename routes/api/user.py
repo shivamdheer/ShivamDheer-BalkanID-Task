@@ -14,9 +14,8 @@ def user():
         headers = {"Authorization": 'token ' + access_token}
 
         res = requests.get(url=url, headers=headers).json()
-        data = {"id": res["login"], "name": res["name"]}
-        if res["email"] is not None:
-            data["email"] = res["email"]
+        data = {"id": res["id"], "username": res["login"],
+                "name": res["name"], "email": res["email"]}
         return data
     else:
         return render_template("callback.html", title="Access denied", desc="You are unauthorized.")
