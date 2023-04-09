@@ -29,16 +29,16 @@ def orgs():
 
         res, status, reason = get_org_by_page(access_token, page)
         if len(res) > 0:
-            orgs.append(res)
+            orgs += res
 
         while len(res) > 0:
             page += 1
             res = get_org_by_page(access_token, page)[0]
             if len(res) > 0:
-                orgs.append(res)
+                orgs += res
 
         if (status == 200):
-            return orgs, status
+            return {"count": len(orgs), "data": orgs}, status
         else:
             return render_template("error.html", title=status, desc=reason)
     else:

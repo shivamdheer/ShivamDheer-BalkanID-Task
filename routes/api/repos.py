@@ -29,16 +29,16 @@ def repos():
 
         res, status, reason = get_repo_by_page(access_token, page)
         if len(res) > 0:
-            repos.append(res)
+            repos += res
 
         while len(res) > 0:
             page += 1
             res = get_repo_by_page(access_token, page)[0]
             if len(res) > 0:
-                repos.append(res)
+                repos += res
 
         if (status == 200):
-            return repos, status
+            return {"count": len(repos), "data": repos}, status
         else:
             return render_template("error.html", title=status, desc=reason)
     else:
