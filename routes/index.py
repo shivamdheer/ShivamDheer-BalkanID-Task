@@ -1,10 +1,8 @@
-from flask import Blueprint, redirect
-import os
+from flask import Blueprint
 
 bp = Blueprint("index", __name__, url_prefix="/")
 
 
 @bp.route("/")
 def index():
-    CLIENT_ID = os.environ.get("CLIENT_ID")
-    return redirect(f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}')
+    return "Hello World"
