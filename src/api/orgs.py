@@ -1,10 +1,12 @@
 from flask import Blueprint, request, redirect, render_template
-from .init_db import cur, conn
+from .init_db import connect, disconnect
 import requests
 
 bp = Blueprint("orgs", __name__, url_prefix="/user")
 
 endpoint = "https://api.github.com"
+
+conn, cur = connect()
 
 
 def get_org_by_page(access_token, page):
@@ -49,6 +51,7 @@ def orgs():
                     type = EXCLUDED.type;
                 """, (org["id"], org["login"], org["name"], org["email"], org["type"]))
             conn.commit()
+            disconnect(conn, cur)
             return {"count": len(orgs), "data": orgs}, status
         else:
             return render_template("error.html", title=status, desc=reason)

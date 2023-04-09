@@ -1,10 +1,12 @@
 from flask import Blueprint, request, redirect, render_template
-from .init_db import cur, conn
+from .init_db import connect, disconnect
 import requests
 
 bp = Blueprint("user", __name__, url_prefix="/user")
 
 endpoint = "https://api.github.com"
+
+conn, cur = connect()
 
 
 @ bp.route("/")
@@ -28,6 +30,7 @@ def user():
                 type = EXCLUDED.type;
                 """, (data["id"], data["login"], data["name"], data["email"], data["type"]))
             conn.commit()
+            disconnect(conn, cur)
             return {"id": data["id"], "username": data["login"],
                     "name": data["name"], "email": data["email"], "type": data["type"]}, res.status_code
         else:

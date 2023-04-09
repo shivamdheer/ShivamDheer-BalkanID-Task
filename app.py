@@ -1,5 +1,5 @@
-from routes import auth, index
-from routes.api import repos, user, orgs
+from src import auth, index
+from src.api import repos, user, orgs
 from flask import Flask
 
 app = Flask(__name__)
