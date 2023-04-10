@@ -11,6 +11,15 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 In order to get a copy of the project you will require you to have Node.js (v14+) and the NPM package manager installed. If you don't have it, you can download the latest version of Node.js from the [official website](https://nodejs.org/en/download/) which also installs the NPM package manager by default. For Python, you will require a Python environment (like Anaconda) with Python version 3.9 and above.
 
+
+### Set up the postgresql database to store the data
+```
+psql postgres
+\c balkanid
+CREATE USER admin WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE balkanid TO admin;
+```
+
 ### Set up the environemnt variables
 Create an env file named .env and add the following credentials:
 ```
