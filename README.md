@@ -8,9 +8,6 @@ This program is designed to fetch data from the Github API using OAuth authentic
 
 ## <img src="https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png" width="32" height="32"> Getting Started
 To get a local copy up and running follow these simple steps.
-### Prerequisites
-In order to get a copy of the project you will require you to have Node.js (v14+) and the NPM package manager installed. If you don't have it, you can download the latest version of Node.js from the [official website](https://nodejs.org/en/download/) which also installs the NPM package manager by default. For Python, you will require a Python environment (like Anaconda) with Python version 3.9 and above.
-
 
 ### Set up the postgresql database to store the data
 ```
