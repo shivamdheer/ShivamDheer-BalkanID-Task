@@ -1,5 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/e3nG7TEg)
-
 <h1 align="center">Github API Data Fetching and Storing Program</h1>
 
 ## <img src="https://openclipart.org/download/307315/1538154643.svg" width="32" height="32"> About the project
@@ -39,21 +37,17 @@ DB_PASSWORD=password
 Open the terminal in the folder 
 Create a python virtual environment and activate it
 ```bash 
-conda create --name myenv
-conda activate myenv
+$ conda create --name myenv
+$ conda activate myenv
 ```
 Install pip and then the packages using the requirements.txt
 ```bash
-conda install pip
-pip install -r requirements.txt
-```
-Export the python server and set up Flask configuration
-```
-export FLASK_APP=app
+$ conda install pip
+$ pip install -r requirements.txt
 ```
 Run the flask server
 ```
-flask run
+$ flask run
 ```
 The server the starts running at `http://127.0.0.1:5000`.
 
