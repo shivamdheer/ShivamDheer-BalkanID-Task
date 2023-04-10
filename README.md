@@ -3,8 +3,13 @@
 <h1 align="center">Github API Data Fetching and Storing Program</h1>
 
 ## <img src="https://openclipart.org/download/307315/1538154643.svg" width="32" height="32"> About the project
-This program is designed to fetch data from the Github API using OAuth authentication and store it in a Postgres database. The program will normalize and deduplicate the data before storing it in the database. Additionally, the program will retrieve an access token from Github API to access the data. The program will be able to dynamically fetch repository data along with the owner's information, both public and private repositories of a user.
+This program has been specifically developed to obtain data from the Github API utilizing OAuth authentication and subsequently storing it in a Postgres database. This program has been designed to normalize and deduplicate data before storing it in the database. Furthermore, the program will retrieve an access token from the Github API to gain access to the data. This program has the capability of dynamically fetching repository data, along with the respective owner's information, which includes both public and private repositories of a user.
 
+The utilization of OAuth authentication ensures that secure access is maintained, and any unauthorized access to sensitive data is prevented. The program is designed to follow best practices in data normalization and deduplication to ensure that data quality is maintained at a high standard before storage. By doing so, the data remains easily retrievable and usable for analysis and other purposes.
+
+The program has been designed with scalability in mind, allowing for a large amount of data to be stored and accessed efficiently. The dynamic nature of the program enables it to retrieve repository and owner information from Github API with minimal user input, thereby ensuring the process is seamless and efficient.
+
+Overall, this program has been designed with a professional approach to ensure the highest level of data quality, security, and efficiency. The use of Github API and Postgres database, in conjunction with OAuth authentication, ensures that the program is reliable and secure for any user to use.
 
 ## <img src="https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png" width="32" height="32"> Getting Started
 To get a local copy up and running follow these simple steps.
