@@ -15,11 +15,15 @@ Overall, this program has been designed with a professional approach to ensure t
 To get a local copy up and running follow these simple steps.
 
 ### Set up the postgresql database to store the data
+```bash
+$ psql postgres
 ```
-psql postgres
-\c balkanid
-CREATE USER admin WITH PASSWORD 'password';
-GRANT ALL PRIVILEGES ON DATABASE balkanid TO admin;
+Create the database and users
+```bash
+postgres=> CREATE DATABASE balkanid;
+postgres=> \c balkanid
+balkanid=> CREATE USER admin WITH PASSWORD 'password';
+balkanid=> GRANT ALL PRIVILEGES ON DATABASE balkanid TO admin;
 ```
 
 ### Set up the environemnt variables
@@ -33,13 +37,15 @@ DB_PASSWORD=password
 
 ### Installation
 Open the terminal in the folder 
-Create a python virtual environment
-``` 
+Create a python virtual environment and activate it
+```bash 
 conda create --name myenv
+conda activate myenv
 ```
-Install the packages using the requirements.txt
-```
-conda install --yes --file requirements.txt
+Install pip and then the packages using the requirements.txt
+```bash
+conda install pip
+pip install -r requirements.txt
 ```
 Export the python server and set up Flask configuration
 ```
