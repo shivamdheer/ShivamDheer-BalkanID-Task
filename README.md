@@ -55,3 +55,19 @@ Run the flask server
 ```
 flask run
 ```
+The server the starts running at `http://127.0.0.1:5000`.
+
+## Appendix of routes
+### OAuth
+- `/` - Authentication and home
+- `/auth` - Initialize OAuth and login
+- `/auth/callback` - Receives the callback from GitHub OAuth
+- `/auth/logout` - Resets the session and logs out the user
+
+### GitHub API (Fetch and insert/update in the database)
+- `/user` - Fetch data of the authenticated user
+- `/user/repos` - Fetch repositories of the authenticated user (owned, collaborated and organization)
+- `/user/orgs` - Fetch organizations that the authenticated user is a part of
+
+### Downloads
+- `/download` - Download the complied CSV from the data in the database in the required format
